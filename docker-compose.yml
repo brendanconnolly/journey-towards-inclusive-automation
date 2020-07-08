@@ -1,0 +1,21 @@
+version: '3'
+services:
+  notebook:
+    build: .
+    container_name: ruby_automation_notebooks
+    environment: 
+      - USE_HUB=true
+      - HUB_ADDRESS=hub
+    ports:
+      - "8888:8888"
+    volumes: 
+      - ./notebooks:/home/jovyan/work/notebooks
+      - ./lib:/home/jovyan/work/lib
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+    expose:
+      - "5555"
+
+  
